@@ -57,3 +57,4 @@ if st.button("Generate Painting") and prompt:
         st.session_state.prompts[idx] = prompt
         st.session_state.index = (idx + 1) % 3  # Cycle replacement
         st.experimental_rerun()
+$BROWSER http://localhost:8501
