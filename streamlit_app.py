@@ -1,15 +1,25 @@
-# === Setup Instructions for Ubuntu 24.04.2 LTS Dev Container ===
-# 1. Create a virtual environment:
-#    python3 -m venv .venv
-# 2. Activate the virtual environment:
-#    source .venv/bin/activate
-# 3. Install dependencies:
-#    pip install streamlit openai
-# 4. Run the Streamlit app:
-#    streamlit run streamlit_app.py
-# 5. Open the app in your host's default browser:
-#    "$BROWSER" http://localhost:8501
-# ===============================================================
+#!/bin/bash
+# Create virtual environment if it doesn't exist
+if [ ! -d ".venv" ]; then
+  python3 -m venv .venv
+fi
+
+# Activate the virtual environment
+source .venv/bin/activate
+
+# Upgrade pip and install dependencies
+pip install --upgrade pip
+pip install streamlit openai
+
+# Run the Streamlit app
+streamlit run streamlit_app.py
+
+# Open the app in the host's default browser
+"$BROWSER" http://localhost:8501
+# === Quick Start ===
+# To run this app in the dev container, use:
+#   ./run_streamlit.sh
+# ====================
 
 import streamlit as st
 import openai
