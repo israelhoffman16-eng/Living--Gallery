@@ -2,7 +2,7 @@
   "name": "Streamlit Dev Container",
   "image": "mcr.microsoft.com/devcontainers/python:3.11",
   "features": {},
-  "postCreateCommand": "pip install -r requirements.txt",
+  "postCreateCommand": "pip install --upgrade pip && pip install streamlit openai python-dotenv",
   "customizations": {
     "vscode": {
       "settings": {},
@@ -14,6 +14,5 @@
   },
   "forwardPorts": [
     8501
-  ],
-  "runArgs": ["--env-file", ".env"]
+  ]
 }
