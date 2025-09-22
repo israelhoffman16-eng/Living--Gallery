@@ -4,7 +4,7 @@ import os
 
 # Make sure your OpenAI API key is set in your environment
 # e.g. export OPENAI_API_KEY="your_key_here"
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = "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"
 
 # Image generator using OpenAI DALL·E
 def generate_image(prompt):
