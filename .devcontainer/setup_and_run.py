@@ -7,9 +7,9 @@ APP_FILE = "streamlit_app.py"
 PORT = "8501"
 URL = f"http://localhost:{PORT}"
 
-def run(cmd, env=None):
-    print(f"Running: {' '.join(cmd)}")
-    subprocess.check_call(cmd, env=env)
+def run(cmd, env=None, shell=False):
+    print(f"Running: {' '.join(cmd) if isinstance(cmd, list) else cmd}")
+    subprocess.check_call(cmd, env=env, shell=shell)
 
 # 1. Create virtual environment if it doesn't exist
 if not os.path.isdir(VENV_DIR):
@@ -29,7 +29,8 @@ streamlit_proc = subprocess.Popen([venv_streamlit, "run", APP_FILE])
 
 # 5. Open the app in the host's default browser
 try:
-    run(["$BROWSER", URL], env=os.environ)
+    # Use shell=True so $BROWSER is expanded
+    run(f'$BROWSER {URL}', env=os.environ, shell=True)
 except Exception as e:
     print(f"Could not open browser: {e}")
 
