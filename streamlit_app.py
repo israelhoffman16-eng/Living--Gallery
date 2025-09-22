@@ -1,15 +1,19 @@
-import streamlit as st
-import os
+# === Setup Instructions for Ubuntu 24.04.2 LTS Dev Container ===
+# 1. Create a virtual environment:
+#    python3 -m venv .venv
+# 2. Activate the virtual environment:
+#    source .venv/bin/activate
+# 3. Install dependencies:
+#    pip install streamlit openai
+# 4. Run the Streamlit app:
+#    streamlit run streamlit_app.py
+# 5. Open the app in your host's default browser:
+#    "$BROWSER" http://localhost:8501
+# ===============================================================
 
-# Ensure openai is installed
-try:
-    import openai
-except ImportError:
-    import subprocess
-    import sys
-    st.warning("Installing 'openai' package. Please wait and rerun the app if needed.")
-    subprocess.check_call([sys.executable, "-m", "pip", "install", "openai"])
-    import openai
+import streamlit as st
+import openai
+import os
 
 # Make sure your OpenAI API key is set in your environment
 # e.g. export OPENAI_API_KEY="your_key_here"
