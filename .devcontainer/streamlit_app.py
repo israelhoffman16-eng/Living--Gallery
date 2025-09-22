@@ -1,10 +1,3 @@
-# === Quick Start ===
-# To run this app in the dev container, use:
-#   ./run_streamlit.sh
-# ====================
-# After the app starts, open it in your host's default browser with:
-#   "$BROWSER" http://localhost:8501
-
 import streamlit as st
 import openai
 import os
@@ -13,11 +6,11 @@ import os
 # e.g. export OPENAI_API_KEY="your_key_here"
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-# Image generator using OpenAI DALL·E
+# Image generator using OpenAI DALL·E (new SDK style)
 def generate_image(prompt):
     try:
         response = openai.images.generate(
-            model="dall-e-3",  # Use the correct DALL·E model name
+            model="dall-e-3",
             prompt=prompt,
             size="512x512"
         )
