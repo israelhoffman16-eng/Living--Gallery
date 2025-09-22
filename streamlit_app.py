@@ -1,17 +1,25 @@
-pip install openai
 import streamlit as st
-import openai
 import os
+
+# Ensure openai is installed
+try:
+    import openai
+except ImportError:
+    import subprocess
+    import sys
+    st.warning("Installing 'openai' package. Please wait and rerun the app if needed.")
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "openai"])
+    import openai
 
 # Make sure your OpenAI API key is set in your environment
 # e.g. export OPENAI_API_KEY="your_key_here"
-openai.api_key = "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"
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Image generator using OpenAI DALL·E
 def generate_image(prompt):
     try:
         response = openai.images.generate(
-            model="gpt-image-1",  # DALL·E model
+            model="dall-e-3",  # Use the correct DALL·E model name
             prompt=prompt,
             size="512x512"
         )
