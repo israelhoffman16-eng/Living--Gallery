@@ -1,6 +1,7 @@
 import os
 import subprocess
 import sys
+import time
 
 VENV_DIR = ".venv"
 APP_FILE = "streamlit_app.py"
@@ -27,9 +28,9 @@ run([venv_pip, "install", "streamlit", "openai"])
 # 4. Run the Streamlit app
 streamlit_proc = subprocess.Popen([venv_streamlit, "run", APP_FILE])
 
-# 5. Open the app in the host's default browser
+# 5. Wait briefly to allow the server to start, then open in browser
+time.sleep(3)
 try:
-    # Use shell=True so $BROWSER is expanded
     run(f'$BROWSER {URL}', env=os.environ, shell=True)
 except Exception as e:
     print(f"Could not open browser: {e}")
