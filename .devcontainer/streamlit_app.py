@@ -1,12 +1,17 @@
+# streamlit_app.py
+
 import streamlit as st
 import openai
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env
+load_dotenv()
 
 # Make sure your OpenAI API key is set in your environment
-# e.g. export OPENAI_API_KEY="your_key_here"
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-# Image generator using OpenAI DALL·E (new SDK style)
+# Image generator using OpenAI DALL·E
 def generate_image(prompt):
     try:
         response = openai.images.generate(
@@ -23,7 +28,7 @@ def generate_image(prompt):
 if "paintings" not in st.session_state:
     st.session_state.paintings = [None, None, None]
     st.session_state.prompts = ["", "", ""]
-    st.session_state.index = 0  # Which slot to replace next
+    st.session_state.index = 0
 
 st.title("🎨 AI Painting Wall")
 
@@ -37,10 +42,8 @@ for i in range(3):
 
 st.subheader("Create or Modify a Painting")
 
-# Prompt input
 prompt = st.text_area("Enter a description (or modify an old one):")
 
-# Dropdown to reuse/modify a previous prompt
 modify_choice = st.selectbox(
     "Or pick a previous prompt to edit:",
     ["None"] + [p for p in st.session_state.prompts if p]
@@ -55,5 +58,5 @@ if st.button("Generate Painting") and prompt:
         idx = st.session_state.index
         st.session_state.paintings[idx] = new_img
         st.session_state.prompts[idx] = prompt
-        st.session_state.index = (idx + 1) % 3  # Cycle replacement
+        st.session_state.index = (idx + 1) % 3
         st.experimental_rerun()
