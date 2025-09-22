@@ -57,3 +57,4 @@ if st.button("Generate Painting") and prompt:
         st.session_state.prompts[idx] = prompt
         st.session_state.index = (idx + 1) % 3  # Cycle replacement
         st.experimental_rerun()
+export OPENAI_API_KEY="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"
